@@ -1,13 +1,15 @@
 # Changelog
 
-## [4.11.0] 2021-01-11
+## [4.11.1] 2021-01-20
 
 ### Fixed
 
 - [TD-3206] Added a little bit of defensive programming when parsing
-implementation structure ids due to a migration that could make
-`ConditionRow` elements not valid from the changeset point of view
-while being functionaly workable.
+  implementation structure ids due to a migration that could make
+  `ConditionRow` elements not valid from the changeset point of view
+  while being functionaly workable.
+
+## [4.11.0] 2021-01-11
 
 ### Added
 
