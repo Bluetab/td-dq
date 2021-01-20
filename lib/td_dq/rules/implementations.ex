@@ -277,12 +277,10 @@ defmodule TdDq.Rules.Implementations do
   end
 
   defp deleted_implementations(query, options, order) do
-    case Keyword.get(options, :deleted, false) do
-      true ->
-        with_deleted(query, order)
-
-      false ->
-        without_deleted(query, order)
+    if Keyword.get(options, :deleted, false) do
+      with_deleted(query, order)
+    else
+      without_deleted(query, order)
     end
   end
 
@@ -290,16 +288,8 @@ defmodule TdDq.Rules.Implementations do
     where(query, [ri, _r], not is_nil(ri.deleted_at))
   end
 
-  defp with_deleted(query, :results) do
-    where(query, [_r, ri], not is_nil(ri.deleted_at))
-  end
-
   defp without_deleted(query, :implementations) do
     where(query, [ri, _r], is_nil(ri.deleted_at))
-  end
-
-  defp without_deleted(query, :results) do
-    where(query, [_r, ri], is_nil(ri.deleted_at))
   end
 
   def enrich_system(
