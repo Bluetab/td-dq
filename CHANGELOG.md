@@ -2,6 +2,13 @@
 
 ## [4.11.0] 2021-01-11
 
+### Fixed
+
+- [TD-3206] Added a little bit of defensive programming when parsing
+implementation structure ids due to a migration that could make
+`ConditionRow` elements not valid from the changeset point of view
+while being functionaly workable.
+
 ### Added
 
 - [TD-3103] Support for execution groups (rule implementations selected for

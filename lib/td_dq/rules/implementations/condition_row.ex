@@ -14,7 +14,7 @@ defmodule TdDq.Rules.Implementations.ConditionRow do
   embedded_schema do
     embeds_one(:structure, Structure, on_replace: :delete)
     embeds_one(:operator, Operator, on_replace: :delete)
-    field(:value, {:array, :map})
+    field(:value, {:array, :map}, default: [])
   end
 
   def changeset(%{} = params) do
@@ -30,7 +30,7 @@ defmodule TdDq.Rules.Implementations.ConditionRow do
     |> validate_value(params)
   end
 
-  defp validate_value(%{valid: false} = changeset, _params) do
+  defp validate_value(%{valid?: false} = changeset, _params) do
     changeset
   end
 

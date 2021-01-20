@@ -453,8 +453,14 @@ defmodule TdDq.Rules.Implementations do
   defp structure_ids([_ | _] = values), do: Enum.flat_map(values, &structure_ids/1)
   defp structure_ids(%Structure{id: id}), do: [id]
 
+  defp structure_ids(%ConditionRow{structure: structure, value: nil}),
+    do: structure_ids(structure)
+
   defp structure_ids(%ConditionRow{structure: structure, value: values}),
     do: structure_ids([structure | values])
+
+  defp structure_ids(%DatasetRow{structure: structure, clauses: nil}),
+    do: structure_ids(structure)
 
   defp structure_ids(%DatasetRow{structure: structure, clauses: clauses}),
     do: structure_ids([structure | clauses])
